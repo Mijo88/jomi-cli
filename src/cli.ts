@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import promptUser from '@/prompt';
-import { createDirectories } from '@/directories';
+import { createDirectories, createProjectRootDirectory } from '@/directories';
 
 (async (command: string, ...args: string[]) => {
   if (!command) {
@@ -9,12 +9,14 @@ import { createDirectories } from '@/directories';
   }
 
   if (command === 'create-app') {
-    // Check if project name was provided
     const promptConfig = await promptUser();
     const {
       createProjectDirectories,
       useTypeScript,
     } = promptConfig;
+
+    // Create project root directory
+    createProjectRootDirectory(promptConfig);
 
     if (createProjectDirectories) {
       // Create list of directories to create and files to add
@@ -28,6 +30,7 @@ import { createDirectories } from '@/directories';
       ]
       if (useTypeScript) {
         directories.push({ name: '@types', files: ['index.d.ts'] });
+        directories.push({ name: 'typings', files: ['index.d.ts'] });
       }
       // Create directories and content
       createDirectories(directories, promptConfig);
