@@ -2,8 +2,24 @@
   "compilerOptions": {
     "target": "ES5",
     "module": "commonjs",
-    "outDir": "./lib",
+    "outDir": "lib",
     "strict": true,
+    "noImplicitAny": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
+    "typeRoots": [
+      "node_modules/@types",
+      "src/@types",
+    ]
+  },
+  "ts-node": {
+    "files": true
   },
   "include": [
     "src"
