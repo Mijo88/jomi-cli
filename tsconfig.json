@@ -6,7 +6,7 @@
     "strict": true,
     "noImplicitAny": true,
     "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
       "@/*": [
@@ -15,7 +15,12 @@
     },
     "typeRoots": [
       "node_modules/@types",
-      "src/@types",
+      "src/typings",
+    ],
+    "plugins": [
+      {
+        "transform": "typescript-transform-paths"
+      }
     ]
   },
   "ts-node": {

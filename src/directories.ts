@@ -3,7 +3,7 @@ import fs from 'fs';
 import type {
   Directory,
   PromptConfig,
-} from '@/@types';
+} from '@/typings';
 
 export function createDirectories(directories: Directory.CreateObj[], cfg: PromptConfig) {
   const cwd = process.cwd();

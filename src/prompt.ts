@@ -1,5 +1,5 @@
 import inquirer from 'inquirer';
-import type { PromptConfig } from '@/@types';
+import type { PromptConfig } from '@/typings';
 
 export default async (): Promise<PromptConfig> => await inquirer.prompt(
   [
