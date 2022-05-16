@@ -9,10 +9,10 @@ const CWD = process.cwd();
 
 export function createProjectRootDirectory(cfg: PromptConfig) {
   const projectRootDir = `${CWD}/${cfg.projectName}`;
-  fs.mkdirSync(`${CWD}/${projectRootDir}`, { recursive: true });
+  fs.mkdirSync(projectRootDir, { recursive: true });
 }
 
-export function createDirectories(directories: Directory.CreateObj[], cfg: PromptConfig) {
+export function createAppDirectories(directories: Directory.CreateObj[], cfg: PromptConfig) {
   const projectRootDir = cfg.projectName;
 
   directories.forEach((dir) => {
@@ -22,7 +22,7 @@ export function createDirectories(directories: Directory.CreateObj[], cfg: Promp
 
     dir.files.forEach((file) => {
       const filePath = `${dirPath}/${file}`;
-      console.log('filePath:', filePath);
+      fs.writeFileSync(filePath, '');
     });
   });
 }

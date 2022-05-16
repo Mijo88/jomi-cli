@@ -8,7 +8,7 @@ export default async (): Promise<PromptConfig> => await inquirer.prompt(
       name: 'projectName',
       message: 'Name of project?',
       validate: function (projectName: string) {
-        const isValidProjectName = !/[^\w-]/.test(projectName);
+        const isValidProjectName = !!projectName && !/[^\w-]/.test(projectName);
         if (isValidProjectName) return true;
         return 'Only letters, numbers, - and _ are supported for project names'
       },

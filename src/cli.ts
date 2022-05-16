@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import promptUser from '@/prompt';
-import { createDirectories, createProjectRootDirectory } from '@/directories';
+import { createAppDirectories, createProjectRootDirectory } from '@/directories';
 
 (async (command: string, ...args: string[]) => {
   if (!command) {
@@ -33,7 +33,7 @@ import { createDirectories, createProjectRootDirectory } from '@/directories';
         directories.push({ name: 'typings', files: ['index.d.ts'] });
       }
       // Create directories and content
-      createDirectories(directories, promptConfig);
+      createAppDirectories(directories, promptConfig);
     }
   }
 
