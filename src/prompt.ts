@@ -2,7 +2,7 @@ import inquirer from 'inquirer';
 import type { PromptConfig } from '@/typings';
 
 // eslint-disable-next-line max-lines-per-function
-export default async(): Promise<PromptConfig> => {
+export default async (): Promise<PromptConfig> => {
   const result = await inquirer.prompt(
     [
       {
@@ -81,6 +81,15 @@ export default async(): Promise<PromptConfig> => {
       },
     ],
   );
+
+  function fn(
+    arg1: string,
+    arg2: string,
+    arg3: string,
+    arg4: string,
+  ) {
+    console.log(arg1, arg2, arg3, arg4);
+  }
 
   return result;
 };

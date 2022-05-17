@@ -1,28 +1,33 @@
 import fs from 'fs';
 
-import type {
-  Directory,
-  PromptConfig,
-} from '@/typings';
+import type { PromptConfig } from '@/typings';
 
 const CWD = process.cwd();
 
-export function createProjectRootDirectory(cfg: PromptConfig) {
-  const projectRootDir = `${CWD}/${cfg.projectName}`;
-  fs.mkdirSync(projectRootDir, { recursive: true });
+export function createDirectory(cfg: PromptConfig, relativePath?: string) {
+  const rootDir = `${CWD}/${cfg.projectName}`;
+  if (!relativePath) {
+    if (!fs.existsSync(rootDir)) {
+      fs.mkdirSync(rootDir, { recursive: true });
+    }
+
+    return;
+  }
+
+  const dirPath = `${rootDir}/${relativePath}`;
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+  }
 }
 
-export function createAppDirectories(directories: Directory.CreateObj[], cfg: PromptConfig) {
-  const projectRootDir = cfg.projectName;
+export function createFile(cfg: PromptConfig, relativeDirPath: string, fileName: string) {
+  const absDirPath = `${CWD}/${cfg.projectName}/${relativeDirPath}`;
+  if (!fs.existsSync(absDirPath)) {
+    return null;
+  }
 
-  directories.forEach((dir) => {
-    const dirPath = `${CWD}/${projectRootDir}/src/${dir.name}`;
-    fs.mkdirSync(dirPath, { recursive: true });
-    if (!dir.files) return;
+  const filePath = `${absDirPath}/${fileName}`;
+  fs.writeFileSync(filePath, '');
 
-    dir.files.forEach((file) => {
-      const filePath = `${dirPath}/${file}`;
-      fs.writeFileSync(filePath, '');
-    });
-  });
+  return filePath;
 }

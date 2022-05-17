@@ -5,7 +5,10 @@ module.exports = {
     commonjs: true,
     es2022: true,
   },
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: { ecmaVersion: 'latest' },
   plugins: ['@typescript-eslint'],
@@ -23,7 +26,13 @@ module.exports = {
     ],
     'space-infix-ops': ['error'],
     'space-in-parens': ['error', 'never'],
-    'space-before-function-paren': ['error', 'never'],
+    'space-before-function-paren': [
+      'error', {
+        named: 'never',
+        anonymous: 'never',
+        asyncArrow: 'always',
+      },
+    ],
     'space-before-blocks': ['error', 'always'],
     'semi-spacing': [
       'error', {
@@ -201,7 +210,7 @@ module.exports = {
       },
     ],
     'max-params': ['error', 4],
-    'max-nested-callbacks': ['error', 2],
+    'max-nested-callbacks': ['error', 3],
     'max-lines-per-function': [
       'error',
       {
@@ -230,9 +239,9 @@ module.exports = {
     'curly': ['error', 'multi-line'],
     'arrow-body-style': ['error', 'as-needed'],
     'class-methods-use-this': 'off',
-    'no-unused-vars': 'off',
     'consistent-return': ['error'],
     'camelcase': ['error', { ignoreDestructuring: true }],
+    'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': [
       'warn',
       {
@@ -240,6 +249,7 @@ module.exports = {
         argsIgnorePattern: '_',
       },
     ],
+    'indent': 'off',
     '@typescript-eslint/indent': ['error', 2],
     'linebreak-style': ['error', 'unix'],
     'quotes': ['error', 'single'],
