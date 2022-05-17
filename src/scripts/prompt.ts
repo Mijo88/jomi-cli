@@ -1,8 +1,10 @@
+import fs from 'fs';
 import inquirer from 'inquirer';
-import type { PromptConfig } from '@/typings';
+
+import type { PromptResult } from '@/typings';
 
 // eslint-disable-next-line max-lines-per-function
-export default async (): Promise<PromptConfig> => {
+export default async (): Promise<PromptResult> => {
   const result = await inquirer.prompt(
     [
       {
@@ -11,10 +13,38 @@ export default async (): Promise<PromptConfig> => {
         message: 'Name of project?',
         validate: function(projectName: string) {
           const isValidProjectName = !!projectName && !/[^\w-]/.test(projectName);
-          if (isValidProjectName) return true;
+          if (!isValidProjectName) {
+            return 'Only letters, numbers, - and _ are supported for project names';
+          }
 
-          return 'Only letters, numbers, - and _ are supported for project names';
+          const projectDirectory = `${process.cwd()}/${projectName}`;
+          if (fs.existsSync(projectDirectory)) {
+            const message = [
+              `Project directory ${projectName} already exists. `,
+              'Please pick a different name ',
+              'or delete the directory first.',
+            ].join('');
+
+            return message;
+          }
+
+          return true;
         },
+      },
+      {
+        type: 'list',
+        name: 'srcDirectoryName',
+        message: 'Name of project source directory?',
+        choices: [
+          {
+            name: 'src',
+            value: 'src',
+          },
+          {
+            name: 'source',
+            value: 'source',
+          },
+        ],
       },
       {
         type: 'confirm',
@@ -81,15 +111,6 @@ export default async (): Promise<PromptConfig> => {
       },
     ],
   );
-
-  function fn(
-    arg1: string,
-    arg2: string,
-    arg3: string,
-    arg4: string,
-  ) {
-    console.log(arg1, arg2, arg3, arg4);
-  }
 
   return result;
 };

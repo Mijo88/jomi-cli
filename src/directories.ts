@@ -1,10 +1,10 @@
 import fs from 'fs';
 
-import type { PromptConfig } from '@/typings';
+import type { ProjectConfig } from '@/typings';
 
 const CWD = process.cwd();
 
-export function createDirectory(cfg: PromptConfig, relativePath?: string) {
+export function createDirectory(cfg: ProjectConfig, relativePath?: string) {
   const rootDir = `${CWD}/${cfg.projectName}`;
   if (!relativePath) {
     if (!fs.existsSync(rootDir)) {
@@ -20,7 +20,7 @@ export function createDirectory(cfg: PromptConfig, relativePath?: string) {
   }
 }
 
-export function createFile(cfg: PromptConfig, relativeDirPath: string, fileName: string) {
+export function createFile(cfg: ProjectConfig, relativeDirPath: string, fileName: string) {
   const absDirPath = `${CWD}/${cfg.projectName}/${relativeDirPath}`;
   if (!fs.existsSync(absDirPath)) {
     return null;

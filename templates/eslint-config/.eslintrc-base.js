@@ -7,14 +7,9 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
   ],
-  parser: '@typescript-eslint/parser',
   parserOptions: { ecmaVersion: 'latest' },
-  plugins: [
-    '@typescript-eslint',
-    'simple-import-sort',
-  ],
+  // plugins: ['@typescript-eslint'],
   rules: {
     'yield-star-spacing': ['error', 'after'],
     'wrap-iife': ['error', 'outside'],
@@ -80,7 +75,7 @@ module.exports = {
     'no-multiple-empty-lines': ['error', { max: 1 }],
     'no-multi-spaces': ['error'],
     'no-mixed-spaces-and-tabs': ['error'],
-    'newline-per-chained-call': ['error', { ignoreChainWithDepth: 2 }],
+    'newline-per-chained-call': ['error', { ignoreChainWithDepth: 1 }],
     'new-parens': ['error'],
     'multiline-ternary': ['error', 'always-multiline'],
     'max-statements-per-line': ['error'],
@@ -106,15 +101,14 @@ module.exports = {
     'array-bracket-spacing': ['error', 'never'],
     'array-bracket-newline': ['error', { multiline: true }],
     'spaced-comment': ['error', 'always'],
-    'simple-import-sort/imports': ['error'],
-    // 'sort-imports': [
-    //   'error',
-    //   {
-    //     allowSeparatedGroups: true,
-    //     ignoreCase: true,
-    //     memberSyntaxSortOrder: ['none', 'all', 'single', 'multiple'],
-    //   },
-    // ],
+    'sort-imports': [
+      'error',
+      {
+        allowSeparatedGroups: true,
+        ignoreCase: true,
+        memberSyntaxSortOrder: ['none', 'all', 'single', 'multiple'],
+      },
+    ],
     'require-await': ['error'],
     'radix': ['error', 'always'],
     'quote-props': ['error', 'consistent-as-needed'],
@@ -245,16 +239,8 @@ module.exports = {
     'class-methods-use-this': 'off',
     'consistent-return': ['error'],
     'camelcase': ['error', { ignoreDestructuring: true }],
-    'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': [
-      'warn',
-      {
-        varsIgnorePattern: '_',
-        argsIgnorePattern: '_',
-      },
-    ],
-    'indent': 'off',
-    '@typescript-eslint/indent': ['error', 2],
+    'no-unused-vars': 'warn',
+    'indent': ['error', 2],
     'linebreak-style': ['error', 'unix'],
     'quotes': ['error', 'single'],
     'semi': ['error', 'always'],
