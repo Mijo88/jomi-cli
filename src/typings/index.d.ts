@@ -1,11 +1,11 @@
-export namespace Directory {
+export declare namespace Directory {
   interface CreateObj {
     name: string;
     files?: string[];
   }
 }
 
-export interface PromptConfig {
+export declare interface PromptConfig {
   projectName: string;
   useTypeScript: boolean;
   useBackendFramework: 'express' | null;

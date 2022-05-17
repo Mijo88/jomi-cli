@@ -1,5 +1,3 @@
 import '';
 
-declare global {
-
-}
+declare global {}
