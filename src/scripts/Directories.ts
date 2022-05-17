@@ -1,30 +1,29 @@
-import fs from 'fs';
 
 import Base from './Base';
 
 const DIRECTORY_STRUCTURE_BACKEND = [
   {
-    dir: 'controllers',
+    dirName: 'controllers',
     addIndexFile: true,
     isSourceDirectory: true,
   },
   {
-    dir: 'routers',
+    dirName: 'routers',
     addIndexFile: true,
     isSourceDirectory: true,
   },
   {
-    dir: 'services',
+    dirName: 'services',
     addIndexFile: true,
     isSourceDirectory: true,
   },
   {
-    dir: 'models',
+    dirName: 'models',
     addIndexFile: true,
     isSourceDirectory: true,
   },
   {
-    dir: 'middleware',
+    dirName: 'middleware',
     addIndexFile: true,
     isSourceDirectory: true,
   },
@@ -41,21 +40,6 @@ export default class Directories extends Base {
     }
   }
 
-  /**
-   * @param path - Absolute file path (including directory name to create)
-   * @param deleteIfExists - Delete directory before recreating it
-   */
-  protected createDirectory = (path: string, deleteIfExists = false) => {
-    if (fs.existsSync(path) && deleteIfExists) {
-      fs.rmSync(path, {
-        force: true,
-        recursive: true,
-      });
-    }
-
-    fs.mkdirSync(path, { recursive: true });
-  };
-
   protected createProjectRootDirectory = () => {
     this.createDirectory(this.projectRootDirectory);
   };
@@ -69,13 +53,13 @@ export default class Directories extends Base {
     // TODO: Provide different structure options
     const directories = [...DIRECTORY_STRUCTURE_BACKEND];
     directories.forEach(({
-      dir,
+      dirName,
       addIndexFile,
       isSourceDirectory,
     }) => {
       const dirPath = isSourceDirectory
-        ? `${this.projectSourceDirectory}/${dir}`
-        : `${this.projectRootDirectory}/${dir}`;
+        ? `${this.projectSourceDirectory}/${dirName}`
+        : `${this.projectRootDirectory}/${dirName}`;
 
       this.createDirectory(dirPath);
 

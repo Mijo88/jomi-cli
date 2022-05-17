@@ -1,3 +1,5 @@
+import fs from 'fs';
+
 import type { Dependencies } from '@/scripts';
 import type { Options, ProjectConfig } from '@/typings';
 
@@ -46,6 +48,25 @@ export default class Base {
       }, {}) as Dependencies;
 
     this.dependencies = filteredDependencies;
+  };
+
+  /**
+   * @param path - Absolute file path (including directory name to create)
+   * @param deleteIfExists - Delete directory before recreating it
+   */
+  protected createDirectory = (path: string, deleteIfExists = false) => {
+    if (fs.existsSync(path) && deleteIfExists) {
+      fs.rmSync(path, {
+        force: true,
+        recursive: true,
+      });
+    }
+
+    fs.mkdirSync(path, { recursive: true });
+  };
+
+  protected createFile = (path: string) => {
+    fs.writeFileSync(path, '');
   };
 
 }
