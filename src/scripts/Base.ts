@@ -42,6 +42,7 @@ export default class Base {
     fs.copyFileSync(sourcePath, destinationPath);
   };
 
+  /** Transforms file name based on condition (.js -> .ts) */
   protected transFormFileName = (fileName: string) => {
     const { useTypeScript } = this.config;
     if (useTypeScript && fileName.includes('js')) {
