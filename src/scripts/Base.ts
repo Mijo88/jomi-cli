@@ -1,57 +1,19 @@
+/* eslint-disable no-console */
+import type { ExecException } from 'child_process';
 import fs from 'fs';
 
-import type { Dependencies } from '@/scripts';
-import type { Options, ProjectConfig } from '@/typings';
+import type { ProjectConfig } from '@/typings';
 
 export default class Base {
 
-  protected projectName: string;
-
-  protected projectRootDirectory: string;
-  protected projectSourceDirectory: string;
-  protected templatesDirectory: string;
-
-  protected useTypeScript: boolean;
-  protected useBackendFrameWork: Options.BackendFramework | null;
-  protected useTestLibrary: Options.TestLibrary | null;
-  protected useImportExportType: Options.ImportExportType;
-  protected createProjectDirectories: boolean;
-
-  protected dependencies: Dependencies | null = null;
+  protected config: ProjectConfig;
 
   constructor(cfg: ProjectConfig) {
-    this.projectName = cfg.projectName;
-
-    this.projectRootDirectory = cfg.projectRootDirectory;
-    this.projectSourceDirectory = cfg.projectSourceDirectory;
-    this.templatesDirectory = cfg.templatesDirectory;
-
-    this.useTypeScript = cfg.useTypeScript;
-    this.useBackendFrameWork = cfg.useBackendFramework;
-    this.useTestLibrary = cfg.useTestLibrary;
-    this.useImportExportType = cfg.useImportExportType;
-    this.createProjectDirectories = cfg.createProjectDirectories;
+    this.config = cfg;
   }
 
-  public inject = (dependencies: Dependencies) => {
-    // Filter out dependencies that are the same as this
-    const filteredDependencies = Object.entries(dependencies)
-      .reduce((acc, [name, instance]) => {
-        if (instance === this) {
-          return acc;
-        }
-
-        return {
-          ...acc,
-          [name]: instance,
-        };
-      }, {}) as Dependencies;
-
-    this.dependencies = filteredDependencies;
-  };
-
   /**
-   * @param path - Absolute file path (including directory name to create)
+   * @param path - Absolute directory path (including directory name to create)
    * @param deleteIfExists - Delete directory before recreating it
    */
   protected createDirectory = (path: string, deleteIfExists = false) => {
@@ -65,8 +27,40 @@ export default class Base {
     fs.mkdirSync(path, { recursive: true });
   };
 
+  /**
+   * @param path - Absolute file path (including file name to create)
+   */
   protected createFile = (path: string) => {
     fs.writeFileSync(path, '');
+  };
+
+  /**
+   * @param sourcePath - Absolute path to source file
+   * @param destinationPath - Absolute destination path (including file name)
+   */
+  protected copyFile = (sourcePath: string, destinationPath: string) => {
+    fs.copyFileSync(sourcePath, destinationPath);
+  };
+
+  protected transFormFileName = (fileName: string) => {
+    const { useTypeScript } = this.config;
+    if (useTypeScript && fileName.includes('js')) {
+      return fileName.replace('.js', '.ts');
+    }
+
+    return fileName;
+  };
+
+  /** Callback function to print feedback from exec command */
+  protected execCommandCallback = (error: ExecException | null, stdout: string, stderr: string) => {
+    if (error) {
+      console.log(error);
+
+      return;
+    }
+
+    console.log(stdout);
+    console.log(stderr);
   };
 
 }

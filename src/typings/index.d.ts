@@ -1,10 +1,5 @@
-export declare namespace Options {
-  type BackendFramework = 'express';
-  type TestLibrary = 'jest';
-  type ImportExportType = 'es6' | 'commonjs';
-}
-
 export declare interface PromptResult {
+  packageManager: 'npm' | 'yarn';
   projectName: string;
   srcDirectoryName: string;
   useTypeScript: boolean;
@@ -13,6 +8,12 @@ export declare interface PromptResult {
   useImportExportType: 'es6' | 'commonjs';
   createProjectDirectories: boolean;
   initializeGit: boolean;
+}
+
+export declare interface MakeFile {
+  fileName: string;
+  useCopy: boolean;
+  path?: string;
 }
 
 export declare interface ProjectConfig extends PromptResult {

@@ -1,65 +1,38 @@
+import config from '@/config';
 
 import Base from './Base';
 
-const DIRECTORY_STRUCTURE_BACKEND = [
-  {
-    dirName: 'controllers',
-    addIndexFile: true,
-    isSourceDirectory: true,
-  },
-  {
-    dirName: 'routers',
-    addIndexFile: true,
-    isSourceDirectory: true,
-  },
-  {
-    dirName: 'services',
-    addIndexFile: true,
-    isSourceDirectory: true,
-  },
-  {
-    dirName: 'models',
-    addIndexFile: true,
-    isSourceDirectory: true,
-  },
-  {
-    dirName: 'middleware',
-    addIndexFile: true,
-    isSourceDirectory: true,
-  },
-];
-
 export default class Directories extends Base {
 
-  public create() {
+  public create = () => {
     this.createProjectRootDirectory();
     this.createProjectSourceDirectory();
 
-    if (this.createProjectDirectories) {
+    if (this.config.createProjectDirectories) {
       this.createProjectDirectoryStructure();
     }
-  }
+  };
 
   protected createProjectRootDirectory = () => {
-    this.createDirectory(this.projectRootDirectory);
+    this.createDirectory(this.config.projectRootDirectory);
   };
 
   protected createProjectSourceDirectory = () => {
-    this.createDirectory(this.projectSourceDirectory);
+    this.createDirectory(this.config.projectSourceDirectory);
   };
 
   protected createProjectDirectoryStructure = () => {
-    const INDEX_FILE_EXT = this.useTypeScript ? 'ts' : 'js';
+    const INDEX_FILE_EXT = this.config.useTypeScript ? 'ts' : 'js';
     // TODO: Provide different structure options
-    const directories = [...DIRECTORY_STRUCTURE_BACKEND];
+    const directories = [...config.projectDirectoryStructures.backendDefault];
     directories.forEach(({
       dirName,
       addIndexFile,
       isSourceDirectory,
     }) => {
       const dirPath = isSourceDirectory
-        ? `${this.projectSourceDirectory}/${dirName}`
-        : `${this.projectRootDirectory}/${dirName}`;
+        ? `${this.config.projectSourceDirectory}/${dirName}`
+        : `${this.config.projectRootDirectory}/${dirName}`;
 
       this.createDirectory(dirPath);
 
@@ -67,9 +40,8 @@ export default class Directories extends Base {
         ? `${dirPath}/index.${INDEX_FILE_EXT}`
         : null;
 
-      if (filePath && this.dependencies?.files) {
-        const { files } = this.dependencies;
-        // Create file
+      if (filePath) {
+        this.createFile(filePath);
       }
     });
   };

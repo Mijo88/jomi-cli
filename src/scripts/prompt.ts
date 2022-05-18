@@ -33,6 +33,21 @@ export default async (): Promise<PromptResult> => {
       },
       {
         type: 'list',
+        name: 'packageManager',
+        messsage: 'Which package manager are you using?',
+        choices: [
+          {
+            name: 'npm',
+            value: 'npm',
+          },
+          {
+            name: 'yarn',
+            value: 'yarn',
+          },
+        ],
+      },
+      {
+        type: 'list',
         name: 'srcDirectoryName',
         message: 'Name of project source directory?',
         choices: [
