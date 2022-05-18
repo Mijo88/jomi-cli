@@ -36,9 +36,7 @@ export default class PackageManager extends Base {
 
   protected execInitCommand = () => {
     const { packageManager } = this.config;
-    const command = packageManager === 'npm'
-      ? 'npm init -y'
-      : 'yarn init -y';
+    const command = packageManager === 'npm' ? 'npm init -y' : 'yarn init -y';
     exec(command);
   };
 

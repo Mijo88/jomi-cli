@@ -65,13 +65,13 @@ module.exports = {
       },
     ],
     'operator-linebreak': ['error', 'before'],
-    'object-property-newline': ['error', { allowAllPropertiesOnSameLine: false }],
+    'object-property-newline': ['error', { allowAllPropertiesOnSameLine: true }],
     'object-curly-spacing': ['error', 'always'],
     'object-curly-newline': [
       'error',
       {
         multiline: true,
-        minProperties: 3,
+        minProperties: 4,
       },
     ],
     'nonblock-statement-body-position': ['error', 'beside'],

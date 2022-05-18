@@ -18,10 +18,7 @@ export default class Base {
    */
   protected createDirectory = (path: string, deleteIfExists = false) => {
     if (fs.existsSync(path) && deleteIfExists) {
-      fs.rmSync(path, {
-        force: true,
-        recursive: true,
-      });
+      fs.rmSync(path, { force: true, recursive: true });
     }
 
     fs.mkdirSync(path, { recursive: true });

@@ -36,14 +36,8 @@ export default async (): Promise<PromptResult> => {
         name: 'packageManager',
         messsage: 'Which package manager are you using?',
         choices: [
-          {
-            name: 'npm',
-            value: 'npm',
-          },
-          {
-            name: 'yarn',
-            value: 'yarn',
-          },
+          { name: 'npm', value: 'npm' },
+          { name: 'yarn', value: 'yarn' },
         ],
       },
       {
@@ -51,14 +45,8 @@ export default async (): Promise<PromptResult> => {
         name: 'srcDirectoryName',
         message: 'Name of project source directory?',
         choices: [
-          {
-            name: 'src',
-            value: 'src',
-          },
-          {
-            name: 'source',
-            value: 'source',
-          },
+          { name: 'src', value: 'src' },
+          { name: 'source', value: 'source' },
         ],
       },
       {
@@ -72,14 +60,8 @@ export default async (): Promise<PromptResult> => {
         name: 'useBackendFramework',
         message: 'Which framework do you want to use?',
         choices: [
-          {
-            name: 'None',
-            value: null,
-          },
-          {
-            name: 'Express',
-            value: 'express',
-          },
+          { name: 'None', value: null },
+          { name: 'Express', value: 'express' },
         ],
       },
       {
@@ -87,14 +69,8 @@ export default async (): Promise<PromptResult> => {
         name: 'useTestLibrary',
         message: 'Which testing framework do you want to use?',
         choices: [
-          {
-            name: 'None',
-            value: null,
-          },
-          {
-            name: 'Jest',
-            value: 'jest',
-          },
+          { name: 'None', value: null },
+          { name: 'Jest', value: 'jest' },
         ],
       },
       {
@@ -102,14 +78,8 @@ export default async (): Promise<PromptResult> => {
         name: 'useImportExportType',
         message: 'Which import/export type do you want to use?',
         choices: [
-          {
-            name: 'CommonJS',
-            value: 'commonjs',
-          },
-          {
-            name: 'ES6 modules',
-            value: 'es6',
-          },
+          { name: 'CommonJS', value: 'commonjs' },
+          { name: 'ES6 modules', value: 'es6' },
         ],
       },
       {

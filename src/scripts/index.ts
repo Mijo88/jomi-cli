@@ -2,7 +2,6 @@ import path from 'path';
 
 import config from '@/config';
 
-import Commands from './Commands';
 import Directories from './Directories';
 import Files from './Files';
 import PackageManager from './PackageManager';
@@ -27,7 +26,6 @@ export default async function setup() {
   };
 
   // Initialize classes
-  const commands = new Commands(projectConfig);
   const directories = new Directories(projectConfig);
   const files = new Files(projectConfig);
   const packageManager = new PackageManager(projectConfig);

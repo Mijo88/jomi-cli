@@ -28,9 +28,8 @@ export default class Directories extends Base {
     const { projectRootDirectory, projectSourceDirectory } = this.config;
     // TODO: Provide different structure options
     const directories = [...config.projectDirectoryStructures.backendDefault];
-    directories.forEach(({
-      dirName, addIndexFile, isSourceDirectory,
-    }) => {
+
+    directories.forEach(({ dirName, addIndexFile, isSourceDirectory }) => {
       const dirPath = isSourceDirectory
         ? path.resolve(projectSourceDirectory, dirName)
         : path.resolve(projectRootDirectory, dirName);
