@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import type { ExecException } from 'child_process';
+import { exec } from 'child_process';
 import fs from 'fs';
 
 import type { ProjectConfig } from '@/typings';
@@ -49,16 +50,15 @@ export default class Base {
     return fileName;
   };
 
-  /** Callback function to print feedback from exec command */
-  protected execCommandCallback = (error: ExecException | null, stdout: string, stderr: string) => {
-    if (error) {
-      console.log(error);
-
-      return;
-    }
-
-    console.log(stdout);
-    console.log(stderr);
-  };
+  protected execCommandAsync = (command: string) => new Promise((resolve) => {
+    exec(command, (error: ExecException | null, stdout: string, stderr: string) => {
+      if (error) {
+        console.log(error);
+      }
+      console.log(stdout);
+      console.log(stderr);
+      resolve(stdout || stderr);
+    });
+  });
 
 }

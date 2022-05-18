@@ -32,5 +32,5 @@ export default async function setup() {
   files.create();
 
   // Initialize and install NPM packages
-  packageManager.init();
+  await packageManager.init();
 }

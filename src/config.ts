@@ -109,6 +109,7 @@ export default {
     'core': {
       runtime: ['dotenv'],
       dev: [
+        'nodemon',
         'eslint',
         'eslint-plugin-simple-import-sort',
       ],
@@ -117,6 +118,7 @@ export default {
       runtime: [],
       dev: [
         'ts-node',
+        'tsconfig-paths',
         'typescript',
         'ttypescript',
         'typescript-transform-paths',
