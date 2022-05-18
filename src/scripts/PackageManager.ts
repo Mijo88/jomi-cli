@@ -21,11 +21,11 @@ export default class PackageManager extends Base {
   protected addScripts = () => {
     const {
       projectRootDirectory,
-      projectSourceDirectory,
+      srcDirectoryName,
       useTypeScript,
     } = this.config;
 
-    const entryFile = path.resolve(projectSourceDirectory, `index.${useTypeScript ? 'ts' : 'js'}`);
+    const entryFile = `./${srcDirectoryName}/index.${useTypeScript ? 'ts' : 'js'}`;
     const packageJSONPath = path.resolve(projectRootDirectory, 'package.json');
 
     const packageJSON = JSON.parse(fs.readFileSync(packageJSONPath, { encoding: 'utf-8' }));
@@ -35,8 +35,9 @@ export default class PackageManager extends Base {
     packageJSON.scripts.lint = useTypeScript ? 'eslint . --ext .ts' : 'eslint **/*.js';
 
     if (useTypeScript) {
-      packageJSON.scripts.start = `ts-node -r tsconfig-paths/register ${entryFile}`;
-      packageJSON.scripts['start:watch'] = `nodemon ${entryFile}`;
+      const startCommand = `ts-node -r tsconfig-paths/register ${entryFile}`;
+      packageJSON.scripts.start = startCommand;
+      packageJSON.scripts['start:watch'] = `nodemon --exec ${startCommand}`;
       packageJSON.scripts.tsc = 'tsc --noEmit';
       packageJSON.scripts['tsc:watch'] = 'tsc --noEmit --watch';
       packageJSON.scripts.build = 'ttsc';

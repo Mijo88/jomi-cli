@@ -54,7 +54,7 @@ export default async (): Promise<PromptResult> => {
         name: 'buildDirectoryName',
         message: 'Name of project build directory?',
         choices: [
-          { name: 'build', value: 'bould' },
+          { name: 'build', value: 'build' },
           { name: 'dist', value: 'dist' },
           { name: 'lib', value: 'lib' },
         ],
