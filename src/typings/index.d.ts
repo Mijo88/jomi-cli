@@ -2,12 +2,9 @@ export declare interface PromptResult {
   packageManager: 'npm' | 'yarn';
   projectName: string;
   srcDirectoryName: string;
+  buildDirectoryName: string;
   useTypeScript: boolean;
-  useBackendFramework: 'express' | null;
-  useTestLibrary: 'jest' | null;
-  useImportExportType: 'es6' | 'commonjs';
   createProjectDirectories: boolean;
-  initializeGit: boolean;
 }
 
 export declare interface MakeFile {
@@ -19,5 +16,19 @@ export declare interface MakeFile {
 export declare interface ProjectConfig extends PromptResult {
   projectRootDirectory: string;
   projectSourceDirectory: string;
-  templatesDirectory: string;
+}
+
+export declare interface ESlintConfig {
+  env?: {
+    [prop: string]: boolean;
+  };
+  extends?: string[],
+  parser?: string;
+  parserOptions?: {
+    [prop: string]: string;
+  }
+  plugins?: string[];
+  rules?: {
+    [prop: string]: string | string[] | unknown[];
+  };
 }

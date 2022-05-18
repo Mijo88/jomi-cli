@@ -4,6 +4,7 @@ const TEMPLATES_PATH = path.resolve(`${__dirname}/../templates`);
 
 export default {
   paths: { templates: TEMPLATES_PATH },
+  // ? files settings
   files: {
     root: [
       {
@@ -30,8 +31,50 @@ export default {
         fileName: 'app.js',
         useCopy: false,
       },
+      {
+        fileName: 'index.js',
+        useCopy: false,
+      },
     ],
   },
+  // ? ESlint settings
+  eslint: {
+    env: {
+      // TODO: Add more options
+      node: {
+        node: true,
+        commonjs: true,
+        es2022: true,
+      },
+    },
+    extends: {
+      vanilla: ['eslint:recommended'],
+      typescript: [
+        'eslint:recommended',
+        'plugin:@typescript-eslint/recommended',
+      ],
+    },
+    parser: {
+      vanilla: null,
+      typescript: '@typescript-eslint/parser',
+    },
+    parserOptions: {
+      vanilla: { ecmaVersion: 'latest' },
+      typescript: { ecmaVersion: 'latest' },
+    },
+    plugins: {
+      vanilla: ['simple-import-sort'],
+      typescript: [
+        '@typescript-eslint',
+        'simple-import-sort',
+      ],
+    },
+    rules: {
+      vanilla: path.resolve(TEMPLATES_PATH, 'eslint-config', 'base-rules.json'),
+      typescript: path.resolve(TEMPLATES_PATH, 'eslint-config', 'ts-rules.json'),
+    },
+  },
+  // ? project directory structure settings
   projectDirectoryStructures: {
     backendDefault: [
       {
@@ -61,6 +104,7 @@ export default {
       },
     ],
   },
+  // ? package settings
   packages: {
     'core': {
       runtime: ['dotenv'],

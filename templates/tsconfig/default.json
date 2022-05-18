@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "commonjs",
+    "outDir": "{{ BUILD_VAR }}",
+    "strict": true,
+    "noImplicitAny": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./{{ SOURCE_VAR }}/*"
+      ]
+    },
+    "typeRoots": [
+      "node_modules/@types",
+      "{{ SOURCE_VAR }}/typings"
+    ],
+    "plugins": [
+      {
+        "transform": "typescript-transform-paths"
+      }
+    ]
+  },
+  "ts-node": {
+    "files": true
+  },
+  "include": [
+    "{{ SOURCE_VAR }}"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

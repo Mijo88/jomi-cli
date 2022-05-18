@@ -27,8 +27,8 @@ export default class Base {
   /**
    * @param path - Absolute file path (including file name to create)
    */
-  protected createFile = (path: string) => {
-    fs.writeFileSync(path, '');
+  protected createFile = (path: string, fileContent = '') => {
+    fs.writeFileSync(path, fileContent);
   };
 
   /**

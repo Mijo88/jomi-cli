@@ -34,7 +34,7 @@ export default async (): Promise<PromptResult> => {
       {
         type: 'list',
         name: 'packageManager',
-        messsage: 'Which package manager are you using?',
+        message: 'Which package manager are you using?',
         choices: [
           { name: 'npm', value: 'npm' },
           { name: 'yarn', value: 'yarn' },
@@ -50,37 +50,20 @@ export default async (): Promise<PromptResult> => {
         ],
       },
       {
+        type: 'list',
+        name: 'buildDirectoryName',
+        message: 'Name of project build directory?',
+        choices: [
+          { name: 'build', value: 'bould' },
+          { name: 'dist', value: 'dist' },
+          { name: 'lib', value: 'lib' },
+        ],
+      },
+      {
         type: 'confirm',
         name: 'useTypeScript',
         message: 'Use TypeScript?',
         default: true,
-      },
-      {
-        type: 'list',
-        name: 'useBackendFramework',
-        message: 'Which framework do you want to use?',
-        choices: [
-          { name: 'None', value: null },
-          { name: 'Express', value: 'express' },
-        ],
-      },
-      {
-        type: 'list',
-        name: 'useTestLibrary',
-        message: 'Which testing framework do you want to use?',
-        choices: [
-          { name: 'None', value: null },
-          { name: 'Jest', value: 'jest' },
-        ],
-      },
-      {
-        type: 'list',
-        name: 'useImportExportType',
-        message: 'Which import/export type do you want to use?',
-        choices: [
-          { name: 'CommonJS', value: 'commonjs' },
-          { name: 'ES6 modules', value: 'es6' },
-        ],
       },
       {
         type: 'confirm',

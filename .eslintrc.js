@@ -48,13 +48,8 @@ module.exports = {
       'error',
       {
         blankLine: 'always',
-        prev: '*',
-        next: 'return',
-      },
-      {
-        blankLine: 'always',
         prev: 'multiline-block-like',
-        next: '*',
+        next: 'return',
       },
     ],
     'padded-blocks': [
@@ -218,7 +213,7 @@ module.exports = {
     'max-lines-per-function': [
       'error',
       {
-        max: 20,
+        max: 40,
         skipBlankLines: true,
         skipComments: true,
       },
