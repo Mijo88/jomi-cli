@@ -116,7 +116,7 @@
   "newline-per-chained-call": [
     "error",
     {
-      "ignoreChainWithDepth": 1
+      "ignoreChainWithDepth": 2
     }
   ],
   "new-parens": [
@@ -214,19 +214,7 @@
     "error",
     "always"
   ],
-  "sort-imports": [
-    "error",
-    {
-      "allowSeparatedGroups": true,
-      "ignoreCase": true,
-      "memberSyntaxSortOrder": [
-        "none",
-        "all",
-        "single",
-        "multiple"
-      ]
-    }
-  ],
+  "sort-imports": "off",
   "require-await": [
     "error"
   ],
@@ -510,7 +498,7 @@
   ],
   "max-lines": [
     "error",
-    200
+    400
   ],
   "max-classes-per-file": [
     "error",
@@ -519,7 +507,7 @@
   "id-length": [
     "error",
     {
-      "min": 3,
+      "min": 1,
       "max": 50,
       "exceptionPatterns": [
         "^[abfijknmvxyz]|fn|re$"
@@ -570,12 +558,7 @@
   "consistent-return": [
     "error"
   ],
-  "camelcase": [
-    "error",
-    {
-      "ignoreDestructuring": true
-    }
-  ],
+  "camelcase": "off",
   "no-unused-vars": "warn",
   "indent": [
     "error",
